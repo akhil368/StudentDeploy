@@ -19,14 +19,11 @@ import com.masai.service.StudentService;
 @Controller
 public class StudentController {
 
-	
+	@Autowired
 	private StudentService service;
 
-	@Autowired
-	public StudentController(StudentService service) {
-		super();
-		this.service = service;
-	}
+	
+	
 	
 	@GetMapping("/students")
 	public ResponseEntity<List<Student>> getAllStudents()
