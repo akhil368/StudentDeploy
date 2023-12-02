@@ -37,7 +37,7 @@ public class SecurityConfig {
 
                     cfg.setAllowedOriginPatterns(Collections.singletonList("*"));
                     cfg.setAllowedMethods(Collections.singletonList("*"));
-                    cfg.setAllowCredentials(true);
+                    cfg.setAllowCredentials(false);
                     cfg.setAllowedHeaders(Collections.singletonList("*"));
                    
                     return cfg;
