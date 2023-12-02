@@ -100,7 +100,7 @@ fetch("https://studentdeploy-production.up.railway.app/students")
                 data.forEach(item => {
                     var newRow = table.insertRow(table.rows.length);
     
-                    // Assuming the API response includes 'firstName', 'lastName', 'phoneNumber'
+                    
                     var cell1 = newRow.insertCell(0);
                     cell1.innerHTML ="First Name :"+ item.firstName +"  Last Name :"+ item.lastName + "  Phone Number : "+item.phone +"  Date of Birth :"+item.dob +"  Gender :"+item.gender+ "  Address :"+item.address
                     ;
@@ -110,7 +110,6 @@ fetch("https://studentdeploy-production.up.railway.app/students")
                     updateButton.textContent = 'Update';
 
                     updateButton.addEventListener('click', function() {
-                        // Fill the form with data from the clicked row
                         fillFormWithData(item);
                     });
                     cell2.appendChild(updateButton);
@@ -119,7 +118,8 @@ fetch("https://studentdeploy-production.up.railway.app/students")
                     var deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.addEventListener('click', function() {
-                    // Delete the corresponding row
+                 
+                    
                     deleteRowWithApiCall(item.id, newRow);
                 });
                 cell3.appendChild(deleteButton);
@@ -151,7 +151,7 @@ fetch("https://studentdeploy-production.up.railway.app/students")
             function deleteRowWithApiCall(id, row) {
                
                 var deleteApiEndpoint = `${baseUrl}/${id}`;
-                console.log(id)
+               
                 fetch(deleteApiEndpoint, {
                     method: 'DELETE',
                    
@@ -160,7 +160,7 @@ fetch("https://studentdeploy-production.up.railway.app/students")
                     if (response.ok) {
                         console.log('Row deleted successfully.');
     
-                        // Delete the corresponding row from the table
+                        
                         var table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
 
                         table.deleteRow(row.rowIndex);

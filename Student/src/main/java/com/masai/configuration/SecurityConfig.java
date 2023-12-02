@@ -39,12 +39,30 @@ public class SecurityConfig {
                     cfg.setAllowedMethods(Collections.singletonList("*"));
                     cfg.setAllowCredentials(true);
                     cfg.setAllowedHeaders(Collections.singletonList("*"));
-                    cfg.setExposedHeaders(Arrays.asList("Authorization"));
+                   
                     return cfg;
                 }
             });
 
         })
+                .authorizeHttpRequests(auth->{
+                    auth.requestMatchers(HttpMethod.POST,"/students").permitAll()
+
+
+//          
+
+                            .requestMatchers(HttpMethod.PUT,"/customers/customer").hasRole("CUSTOMER")
+                            .requestMatchers(HttpMethod.DELETE,"/customers/customer/{customerId}").hasRole("CUSTOMER")
+                            .requestMatchers("/trip-bookings/**","/trip-bookings","/customers/customer/hello","/customers/signIn").hasRole("CUSTOMER")
+
+//                            .requestMatchers("/customers/**").hasRole("CUSTOMER")
+
+//                            .requestMatchers().hasRole("DRIVER")
+                            .requestMatchers("/drivers/add","/drivers/update","/drivers/delete/{id}","/drivers/hello","/driver/signIn").hasRole("DRIVER")
+
+//                            .requestMatchers("/drivers/**").hasRole("DRIVER")
+                    .anyRequest().authenticated();
+            })
         .csrf(csrf -> csrf.disable())
 
 
