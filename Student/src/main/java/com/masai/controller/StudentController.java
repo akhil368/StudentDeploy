@@ -26,24 +26,25 @@ public class StudentController {
 
 	
 	
-	
+	@CrossOrigin(origins="*")
 	@GetMapping("/students")
 	public ResponseEntity<List<Student>> getAllStudents()
 	{
 		return new ResponseEntity<List<Student>>( service.getAllStudent(),HttpStatus.OK);
 	}
-	
+	@CrossOrigin(origins="*")
 	@PostMapping("/students")
 	public ResponseEntity<Student> addStudent(@RequestBody Student st)
 	{
 		return new ResponseEntity<Student>(service.addStudent(st),HttpStatus.CREATED);
 	}
-	
+	@CrossOrigin(origins="*")
 	@DeleteMapping("/students/{id}")
 	public ResponseEntity<Student> deleteStudent(@PathVariable Integer id)
 	{
 		return new ResponseEntity<Student>(service.removeStudent(id),HttpStatus.OK);
 	}
+	@CrossOrigin(origins="*")
 	@PutMapping("/students")
 	public ResponseEntity<Student> update(@RequestBody Student st)
 	{
