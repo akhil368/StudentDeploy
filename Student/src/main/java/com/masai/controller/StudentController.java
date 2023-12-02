@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.masai.entity.Student;
 import com.masai.service.StudentService;
-@CrossOrigin(origins="*")
+
 @Controller
+
 public class StudentController {
 
 	@Autowired
