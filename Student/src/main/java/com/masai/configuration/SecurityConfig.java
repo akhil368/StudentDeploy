@@ -49,18 +49,11 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.POST,"/students").permitAll()
 
 
-//          
-
-                            .requestMatchers(HttpMethod.PUT,"/customers/customer").hasRole("CUSTOMER")
-                            .requestMatchers(HttpMethod.DELETE,"/customers/customer/{customerId}").hasRole("CUSTOMER")
-                            .requestMatchers("/trip-bookings/**","/trip-bookings","/customers/customer/hello","/customers/signIn").hasRole("CUSTOMER")
-
-//                            .requestMatchers("/customers/**").hasRole("CUSTOMER")
-
-//                            .requestMatchers().hasRole("DRIVER")
-                            .requestMatchers("/drivers/add","/drivers/update","/drivers/delete/{id}","/drivers/hello","/driver/signIn").hasRole("DRIVER")
-
-//                            .requestMatchers("/drivers/**").hasRole("DRIVER")
+       
+                    .requestMatchers(HttpMethod.GET,"/students").permitAll()
+                            .requestMatchers(HttpMethod.PUT,"/students").permitAll()
+                            .requestMatchers(HttpMethod.DELETE,"/students").permitAll()                          
+                           
                     .anyRequest().authenticated();
             })
         .csrf(csrf -> csrf.disable())
