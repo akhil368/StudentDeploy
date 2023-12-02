@@ -51,7 +51,7 @@
     <title>Simple Form</title>
 </head>
 <body>
-    <form action="#" method="post">
+    <form onsubmit="addCustomer(event)">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required>
 
@@ -60,7 +60,7 @@
 
         <label for="phoneNumber">Phone Number:</label>
         <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required>
-        <!-- The 'pattern' attribute enforces 10 numeric characters for phone number -->
+        
 
         <label for="dob">Date of Birth:</label>
         <input type="date" id="dob" name="dob" required>
@@ -77,5 +77,6 @@
 
         <input type="submit" value="Submit">
     </form>
+    <script src="/index.js"></script>
 </body>
 </html>
