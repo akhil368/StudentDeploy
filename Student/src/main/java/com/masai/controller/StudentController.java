@@ -18,7 +18,7 @@ import com.masai.entity.Student;
 import com.masai.service.StudentService;
 
 @Controller
-
+@CrossOrigin(origins="*") // will allows any domain
 public class StudentController {
 
 	@Autowired
