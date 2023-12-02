@@ -21,39 +21,45 @@ import java.util.Collections;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception{
+	@Bean
+	public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
 
-        http.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+		http.cors(cors -> {
 
-        http
-                .cors(cors -> {
+			cors.configurationSource(new CorsConfigurationSource() {
 
-            cors.configurationSource(new CorsConfigurationSource() {
+				@Override
+				public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+					CorsConfiguration cfg = new CorsConfiguration();
 
-                @Override
-                public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                    CorsConfiguration cfg = new CorsConfiguration();
+					cfg.setAllowedOriginPatterns(Collections.singletonList("*"));
+					cfg.setAllowedMethods(Collections.singletonList("*"));
+					cfg.setAllowCredentials(true);
+					cfg.setAllowedHeaders(Collections.singletonList("*"));
+					cfg.setExposedHeaders(Arrays.asList("Authorization"));
+					return cfg;
+				}
+			});
 
-                    cfg.setAllowedOriginPatterns(Collections.singletonList("*"));
-                    cfg.setAllowedMethods(Collections.singletonList("*"));
-                    cfg.setAllowCredentials(false);
-                    cfg.setAllowedHeaders(Collections.singletonList("*"));
-                   
-                    return cfg;
-                }
-            });
+		}).authorizeHttpRequests(auth ->{
 
-        })
-                
-        .csrf(csrf -> csrf.disable())
-        ;
-        return http.build();
+		auth
+		.requestMatchers(HttpMethod.POST,"/students").permitAll()
+		.requestMatchers(HttpMethod.GET, "/students").permitAll()
+		.requestMatchers(HttpMethod.PUT, "/students").permitAll()
+		.requestMatchers(HttpMethod.DELETE, "/students").permitAll()
+		.requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
+		.anyRequest().authenticated();
 
-    }
+	})
+	.csrf(csrf -> csrf.disable())
+	.formLogin(Customizer.withDefaults())
+	.httpBasic(Customizer.withDefaults());
 
-    @Bean
-    public PasswordEncoder getPasswordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+
+		return http.build();
+
+
+	}
+
 }
