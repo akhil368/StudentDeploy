@@ -16,7 +16,7 @@ public class Student {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private double phone;
+	private String phone;
 	private LocalDate dob;
 	private String gender;
 	private String address;
@@ -24,7 +24,7 @@ public class Student {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Student( String firstName, String lastName, double phone, LocalDate dob, String gender,
+	public Student( String firstName, String lastName, String phone, LocalDate dob, String gender,
 			String address) {
 		super();
 		
@@ -53,10 +53,10 @@ public class Student {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public double getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(double phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public LocalDate getDob() {

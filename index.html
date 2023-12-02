@@ -47,11 +47,27 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
     </style>
     <title>Simple Form</title>
 </head>
 <body>
-    <form onsubmit="addCustomer(event)">
+    <form onsubmit="addCustomer(event)" id="myForm">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required>
 
@@ -59,7 +75,7 @@
         <input type="text" id="lastName" name="lastName" required>
 
         <label for="phoneNumber">Phone Number:</label>
-        <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
         
 
         <label for="dob">Date of Birth:</label>
@@ -77,6 +93,20 @@
 
         <input type="submit" value="Submit">
     </form>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <!-- Add other table headers for each form field -->
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be dynamically added here -->
+        </tbody>
+    </table>
     <script src="/index.js"></script>
 </body>
 </html>
