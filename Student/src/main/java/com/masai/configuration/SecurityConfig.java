@@ -45,17 +45,7 @@ public class SecurityConfig {
             });
 
         })
-                .authorizeHttpRequests(auth->{
-                    auth.requestMatchers(HttpMethod.POST,"/students").permitAll()
-
-
-       
-                    .requestMatchers(HttpMethod.GET,"/students").permitAll()
-                            .requestMatchers(HttpMethod.PUT,"/students").permitAll()
-                            .requestMatchers(HttpMethod.DELETE,"/students").permitAll()                          
-                           
-                    .anyRequest().authenticated();
-            })
+                
         .csrf(csrf -> csrf.disable())
 
 
