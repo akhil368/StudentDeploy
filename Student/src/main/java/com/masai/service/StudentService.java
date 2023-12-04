@@ -10,7 +10,7 @@ import com.masai.entity.Student;
 public interface StudentService {
 
 	public Student addStudent(Student st);
-	public Student updateStudent(Student st);
+	public Student updateStudent (Student st) ;
 	public List<Student> getAllStudent();
 	public Student removeStudent(Integer id);
 }
